@@ -2,9 +2,8 @@
 import axios from "axios";
 import { cookies } from "next/headers";
 import { API_URL, TOKEN_NAME } from "@/constants";
-export async function createLocation(formData: FormData) {
+export async function createLocation(formData: FormData): Promise<void> {
     const token = (await cookies()).get(TOKEN_NAME)?.value;
-    if (!token) return null;
     let location : any = {};
     let locationLatLng = [0, 0];
     for (const key of Array.from(formData.keys())) {
