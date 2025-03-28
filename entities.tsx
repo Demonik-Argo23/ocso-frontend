@@ -28,4 +28,5 @@ export interface Manager{
     managerPhoneNumber: string;
     location: Location;
     user?: any;
+    manager: string;
 }
