@@ -4,7 +4,7 @@ import Link from "next/link";
 import axios from "axios";
 import { API_URL } from "@/constants";
 import React from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
     const [submitting, setSubmitting] = React.useState(false);
@@ -40,7 +40,7 @@ export default function LoginPage() {
                 <Input label="Email" type="email" name="userEmail" isRequired={true} size="sm" />
                 <Input label="Contraseña" type="password" name="userPassword" isRequired={true} size="sm" />
             </div>
-            <div className="flex flex-col item-center gap-3">
+            <div className="flex flex-col items-center gap-3">
                 <Button 
                 color="primary" 
                 type="submit"
