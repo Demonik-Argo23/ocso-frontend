@@ -5,14 +5,16 @@ import { API_URL } from "@/constants";
 import FormNewLocation from "./_components/FormNewLocation";
 import DeleteLocationButton from "./_components/DeleteLocationButton";
 import { authHeaders } from "@/helpers/authHeaders";
+import UpdateLocation from "./_components/UpdateLocation";
+import FormUpdateLocation from "./_components/FormUpdateLocation";
+
 
 const LocationsPage = async ({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) => {
-    const headers = await authHeaders();
     let response = await fetch(
         `${API_URL}/locations`,
         {
             headers: {
-                ...headers
+                ...authHeaders()
             },
             next: {
                 tags: ["dashboard:locations"],
@@ -42,6 +44,9 @@ const LocationsPage = async ({ searchParams }: { searchParams: { [key: string]: 
                     <FormNewLocation store={searchParams.store} />
                 </div>
                 <DeleteLocationButton store={searchParams.store} />
+                <UpdateLocation>
+                    <FormUpdateLocation store={searchParams.store} />
+                </UpdateLocation>
             </div>
         </div>
     );
