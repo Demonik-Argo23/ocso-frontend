@@ -9,13 +9,15 @@ export default async function deleteLocation(FormData: FormData) {
     if (!locationId) {
         return;
     }
-    const token = cookies().get(TOKEN_NAME)?.value
-    const response = await fetch(`${API_URL}/locations/${locationId}`, {
+    const headers = await authHeaders();
+    const cookieStore = await cookies();
+    const token = cookieStore.get(TOKEN_NAME)?.value;
+    await fetch(`${API_URL}/locations/${locationId}`, {
         method: 'DELETE',
         headers: {
-            ...authHeaders(),
+            ...headers,
         }
-    })
+    });
     revalidateTag("dashboard:locations");
     redirect("/dashboard")
 }
