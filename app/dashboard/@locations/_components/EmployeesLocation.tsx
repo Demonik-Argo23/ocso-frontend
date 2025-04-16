@@ -27,4 +27,5 @@ export default async function EmployeesLocation({ store }: { store: string | str
             </CardBody>
         </Card>
     });
+
 }
