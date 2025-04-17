@@ -1,13 +1,14 @@
 import ManagerCards from "./_components/ManagerCards";
 import { ReactNode } from "react";
 
-export default function LayoutManagers({children}: {children: ReactNode}){
+export default function LayoutManagers({ children, count }: { children: ReactNode, count: ReactNode }) {
     return (
         <>
-        <div className="w-4/12 max-h-[90vh] h-[90vh] overflow-hidden overflow-y-auto">
-            <ManagerCards />
-        </div>
-        <div>{children}</div>
+            <div className="w-4/12 max-h-[90vh] h-[90vh] overflow-hidden overflow-y-auto">
+                <ManagerCards />
+            </div>
+            <div className="7/12 flex flex-col justify-center items-center gap-10">
+            <div>{children}</div> <div></div> {count} </div>
         </>
-    )
+    );
 }
