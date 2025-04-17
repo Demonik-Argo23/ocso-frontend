@@ -6,17 +6,17 @@ import { revalidateTag } from "next/cache";
 
 export default async function createManager(managerId: string, formData: FormData) {
     let manager: any = {};
-    for (const key of formData.keys()) {
+    for (const key of Array.from(formData.keys())) {
         manager[key] = formData.get(key);
     }
     const response = await fetch(`${API_URL}/managers/${managerId}`, {
         method: 'PATCH',
         body: JSON.stringify(manager),
         headers: {
-            ...authHeaders(),
+            ...(await authHeaders()),
         },
     })
-    if (response.status === 200){
+    if (response.status === 200) {
         revalidateTag("dashboard:managers")
         revalidateTag(`dashboard:manager:${managerId}`)
     };
