@@ -4,6 +4,8 @@ import { authHeaders } from "@/helpers/authHeaders";
 import { Card, CardBody, CardHeader, Divider } from "@heroui/react";
 import ManagerCard from "./_components/ManagerCard";
 import DeleteManagerButton from "./_components/DeleteManagerButton";
+import FormUpdateManager from "../_components/FormUpdateManager";
+import UpdateManager from "./_components/UpdateManager";
 
 export default async function ManagerPaga({
     params,
@@ -27,6 +29,9 @@ export default async function ManagerPaga({
             <ManagerCard manager={data} />
             <div className="bg-white shadow-medium rounded-md px-10 py-2">
             <DeleteManagerButton managerId={data.managerId} />
+            <UpdateManager>
+                <FormUpdateManager manager={data} />
+            </UpdateManager>
             </div>
         </div>
 
