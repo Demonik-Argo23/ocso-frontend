@@ -19,27 +19,35 @@ export default async function FormUpdateManager({ manager }: { manager: Manager 
             e.preventDefault(); 
             const formData = new FormData(e.currentTarget);
             updateManager(manager.managerId, formData); 
-        }} className="bg-orange-400 rounded-md">
+        }} className="bg-orange-400 rounded-md flex flex-col flex-grow-0 gap-2">
             <h1> Actualizar Manager </h1>
             <Input
+                required={true}
+                label="Nombre completo" 
                 defaultValue="{manager.managerFullName}"
                 placeholder="Marco Aurelio"
                 name="managerFullName"
             />
             <Input
+                required={true}
+                label="Correo Electrónico" 
                 defaultValue="{manager.managerEmail}"
                 placeholder="maurelio@gmail.com"
                 name="managerEmail"
             />
             <Input
+                required={true}
+                label="Salario" 
                 defaultValue="{String(manager.managerSalary)}"
-                placeholder="manager@ocso.com"
-                name="12000"
+                placeholder="12000"
+                name="Salario"
             />
             <Input
+                required={true}
+                label="Número de teléfono" 
                 defaultValue="{String(manager.managerPhoneNumber)}"
-                placeholder="manager@ocso.com"
-                name="4425874686"
+                placeholder="4425874686"
+                name="Telefono"
             />
             <SelectStore
                 stores={stores}
