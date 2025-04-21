@@ -32,6 +32,9 @@ export default async function ManagerCards() {
                         <p className="w-full">
                             Telefono: <b>{manager.managerPhoneNumber}</b>
                         </p>
+                        <p className="w-full">
+                            Salario: <b>{manager.managerSalary}</b>
+                        </p>
                     </CardBody>
                 </Card>
             </Link>
