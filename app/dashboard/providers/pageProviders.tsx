@@ -11,11 +11,14 @@ const ProvidersPage = async () => {
         headers: {
             ...(await authHeaders()),
         },
+        next: {
+            tags: ["dashboard/providers"],
+        }
     });
     const providers: Provider[] = await response.json();
 
     return (
-        <div className="flex flex-col h-[90vh]">
+        <div className="flex flex-col px-10 h-[90vh] gap-10 pt-10">
             <Createprovider>
                 <FormCreateProvider />
             </Createprovider>
