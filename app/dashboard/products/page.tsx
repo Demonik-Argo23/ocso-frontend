@@ -17,7 +17,7 @@ const ProductsPage = async () => {
 
             <form className="px-10 justify-center pt-10" action={createProducts}>
                 <div className="flex flex-col p-10 rounded-lg gap-6 bg-orange-400">
-                    <h1 className="text-2x1 text-white font-bold"> Crear Producto </h1>
+                    <h1 className="text-2xl text-white font-bold"> Crear Producto </h1>
                     <Input label="Nombre" name="productName" />
                     <Input
                         label="Precio"
