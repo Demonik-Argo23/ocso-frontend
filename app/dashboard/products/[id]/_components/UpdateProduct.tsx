@@ -5,7 +5,7 @@ import SelectProvider from "../../_components/SelectProvider";
 import { Provider } from "@/entities"
 
 import { LuCheck } from "react-icons/lu";
-import DeleteProduct from "./deleteProduct";
+import DeleteProduct from "./DeleteProduct";
 
 export default function UpdateProduct({ product, providers }: { product: Product, providers: Provider[] }) {
     const { productId } = product;

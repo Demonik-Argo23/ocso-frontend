@@ -1,3 +1,4 @@
+'use client';
 import { Product, Provider } from "@/entities";
 import { Input, Link, Select, SelectItem } from "@heroui/react";
 import { useEffect, useState } from "react";

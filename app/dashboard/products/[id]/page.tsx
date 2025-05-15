@@ -4,21 +4,20 @@ import ProductCard from "../_components/ProductCard";
 import ProviderCard from "../../providers/_components/ProviderCard";
 import { Product, Provider } from "@/entities";
 import UpdateProduct from "./_components/UpdateProduct";
-import DeleteProduct from "./_components/deleteProduct";
+import DeleteProduct from "./_components/DeleteProduct";
 export default async function ProductPage({
     params,
 }: {
-    params: {
-        id: string;
-    };
+    params: Promise<{ id: string }>;
 }) {
-    const responseProduct = await fetch(`${API_URL}/products/${params.id}`,
+    const resolvedParams = await params;
+    const responseProduct = await fetch(`${API_URL}/products/${resolvedParams.id}`,
         {
             headers: {
                 ...await (authHeaders()),
             },
             next: {
-                tags: [`dashboard:product:${params.id}`],
+                tags: [`dashboard:product:${resolvedParams.id}`],
 
             }
         })

@@ -10,17 +10,16 @@ import UpdateManager from "./_components/UpdateManager";
 export default async function ManagerPaga({
     params,
 }: {
-    params: {
-        id: string;
-    };
+    params: Promise<{ id: string }>;
 }) {
+    const resolvedParams = await params;
     const headers = await authHeaders();
-    const response = await fetch(`${API_URL}/managers/${params.id}`, {
+    const response = await fetch(`${API_URL}/managers/${resolvedParams.id}`, {
         headers: {
             ...headers,
         },
         next: {
-            tags: [`dashboard:managers:${params.id}`, `dashboard:managers`],
+            tags: [`dashboard:managers:${resolvedParams.id}`, `dashboard:managers`],
         }
     });
     const data: Manager = await response.json();
