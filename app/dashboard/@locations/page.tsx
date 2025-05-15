@@ -33,7 +33,7 @@ const LocationsPage = async ({ searchParams }: { searchParams: Promise<{ [key: s
         ...data
     ]
     return (
-        <div className="w-2/12">
+        <div className="w-full">
             <div className="w-full flex flex-col items-center h-[90vh] bg-red-50">
                 <div className="w-1/2 my-10">
                     <SelectLocation locations={data} store={resolvedSearchParams.store} />

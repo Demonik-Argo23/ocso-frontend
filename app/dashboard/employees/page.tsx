@@ -13,7 +13,16 @@ const EmployeesPage = async () => {
             tags: ["dashboard/employees"],
         }
     });
-    const employees: Employee[] = await response.json()
+    const data = await response.json();
+    console.log("API response:", data);
+
+    const employees: Employee[] = Array.isArray(data)
+        ? data
+        : Array.isArray(data?.data)
+            ? data.data
+            : Array.isArray(data?.employees)
+                ? data.employees
+                : [];
 
     return (
         <div className="flex flex-wrap flex-grow-0 h-[90vh] gap-4 overflow-y-auto p-10">

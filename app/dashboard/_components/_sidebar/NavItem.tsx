@@ -6,14 +6,17 @@ import { ReactElement } from "react";
 interface NavItemProps{
     icon: JSX.Element;
     path: string;
-
 }
 
 export const NavItem = ({ icon, path }: NavItemProps) => {
     const pathName = usePathname();
+    const isActive = pathName === path;
     return (
-        <Link href={path} className="w-full h-14 flex justify-center">
-        <span className={pathName === path ? 'bg-orange-500 w-10/12 flex justify-center rounded-md transition-colors py-2' : ' transition-colors w-10/12 py-2'}> {icon} </span>
+        <Link href={path} className="w-full flex justify-center">
+            <span className={`w-12 h-12 flex items-center justify-center rounded-lg transition-colors
+                ${isActive ? 'bg-orange-500 text-white shadow' : 'text-gray-400 hover:bg-gray-100'}`}>
+                {icon}
+            </span>
         </Link>
     );
 }

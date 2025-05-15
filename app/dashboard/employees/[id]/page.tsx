@@ -1,10 +1,21 @@
-import EmployeeCard from "../_components/EmployeeCard";
+import { Employee } from "@/entities";
+import { authHeaders } from "@/helpers/authHeaders";
+import { Image } from "@heroui/react";
+import FormUpdateEmployee from "./_components/FormUpdateEmployee";
+import EmployeeDataCard from "./_components/EmployeeDataCard";
 
-export default async function EmployeePage({params} : {params: Promise<{id: string}>}) {
-    const resolvedParams = await params;
-    // Fetch employee data here, for example:
-    const res = await fetch(`${process.env.API_URL}/employees/${resolvedParams.id}`);
-    const employee = await res.json();
+export default async function EmployeePage({ params }: { params: { id: string } }) {
+    const responseEmployee = await fetch(`${process.env.API_URL}/employees/${params.id}`, {
+        headers: {
+            ...await authHeaders()
+        }
+    });
+    const employee: Employee = await responseEmployee.json();
 
-    return <EmployeeCard employee={employee} />
+    return (
+        <div className="w-full h-[90vh] flex flex-row justify-center">
+            <EmployeeDataCard employee={employee} />
+            <FormUpdateEmployee employee={employee} />
+        </div>
+    )
 }

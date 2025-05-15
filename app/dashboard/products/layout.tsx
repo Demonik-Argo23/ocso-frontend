@@ -24,7 +24,26 @@ const LayoutProducts = async ({ children }: { children: ReactNode }) => {
         },
     });
 
-    const providers: any[] = await responseProviders.json();
+    const data = await responseProviders.json();
+
+    // Asegúrate de que providers siempre sea un array
+    let providers: any[] = [];
+    if (Array.isArray(data)) {
+        providers = data;
+    } else if (Array.isArray(data?.data)) {
+        providers = data.data;
+    } else if (Array.isArray(data?.providers)) {
+        providers = data.providers;
+    }
+
+    if (!Array.isArray(providers) || providers.length === 0) {
+        return (
+            <div className="flex flex-col items-center justify-center h-full w-full text-red-500 text-xl">
+                No tienes autorización para ver los proveedores.<br />
+                {data?.message && <span className="text-base text-gray-500">{data.message}</span>}
+            </div>
+        );
+    }
 
     return (
         <div className="h-[90vh] w-full flex flex-row">

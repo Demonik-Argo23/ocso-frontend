@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation";
 import Header from "./_components/Header";
 import Sidebar from "./_components/_sidebar/Sidebar";
+
 export default function LayoutDashbord({
     children,
     locations,
@@ -11,13 +12,22 @@ export default function LayoutDashbord({
 }>) {
     const path = usePathname();
     return (
-        <div className="w-screen h-screen bg-orange-50">
-            <Header></Header>
-            <div className="flex flex-row items-center">
-                <Sidebar></Sidebar>
-                {children}
-                {path === "/dashboard" ? locations : null}
-                {locations}
+        <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-orange-100 flex flex-col">
+            <Header />
+            <div className="flex flex-1">
+                <Sidebar />
+                <main className="flex-1 flex flex-col md:flex-row gap-8 p-8 overflow-auto">
+                    <section className="flex-1 flex items-center justify-center">
+                        {children}
+                    </section>
+                    {path === "/dashboard" && (
+                        <aside className="w-full md:w-[600px] max-w-2xl flex flex-col items-center">
+                            <div className="w-full bg-white rounded-2xl shadow-2xl p-12 flex flex-col gap-10">
+                                {locations}
+                            </div>
+                        </aside>
+                    )}
+                </main>
             </div>
         </div>
     );

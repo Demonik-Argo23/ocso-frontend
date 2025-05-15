@@ -1,12 +1,11 @@
 import { Button, Input } from "@heroui/react";
-import createLocation from "@/actions/locations/create";
 import { API_URL } from "@/constants";
 import SelectManager from "./SelectManager";
 import { authHeaders } from "@/helpers/authHeaders";
 import { Location, Manager } from "@/entities";
 import updateLocation from "../update";
 
-export default async function FormNewLocation({ store }: { store: string | undefined | string[] }) {
+export default async function FormUpdateLocation({ store }: { store: string | undefined | string[] }) {
     if (!store || store === undefined || typeof store === "object") return null;
     const updateWithStoreId = updateLocation.bind(null, store);
     const headers = await authHeaders();
@@ -33,14 +32,52 @@ export default async function FormNewLocation({ store }: { store: string | undef
     let foundManager = dataManagers.find((manager) => manager.managerId === foundLocation?.manager?.managerId);
 
     return (
-        <form action={updateWithStoreId} className="bg-orange-400 py-2 px-4 flex flex-col gap-6 w-full rounded-lg">
-            <h1 className="text-xl text-white text-center">Crear Tienda</h1>
-            <Input required={true} defaultValue={foundLocation?.locationName} label="Nombre" placeholder="Ocso Jirikiya" name="locationName" />
-            <Input required={true} defaultValue={foundLocation?.locationAddress} label="Direccion" placeholder="Av De La Luz S/N" name="locationAddress" />
-            <Input required={true} defaultValue={foundLocation?.locationLatLng[0].toString()} label="Latitud" placeholder="-120" name="locationLat" />
-            <Input required={true} defaultValue={foundLocation?.locationLatLng[1].toString()} label="Longitud" placeholder="20" name="locationLng" />
-            <SelectManager defaultManager={foundManager?.managerId} managers={dataManagers} locations={dataLocations} />
-            <Button type="submit" color="primary">Actualizar</Button>
+        <form
+            action={updateWithStoreId}
+            className="bg-white shadow-xl rounded-2xl px-8 py-8 flex flex-col gap-6 w-full max-w-lg"
+        >
+            <h1 className="text-2xl font-bold text-orange-500 text-center mb-2">Actualizar Tienda</h1>
+            <Input
+                required
+                defaultValue={foundLocation?.locationName}
+                label="Nombre"
+                name="locationName"
+                className="bg-gray-50 rounded-lg w-full text-black"
+            />
+            <Input
+                required
+                defaultValue={foundLocation?.locationAddress}
+                label="Dirección"
+                name="locationAddress"
+                className="bg-gray-50 rounded-lg w-full text-black"
+            />
+            <div className="flex gap-4">
+                <Input
+                    required
+                    defaultValue={foundLocation?.locationLatLng[0].toString()}
+                    label="Latitud"
+                    name="locationLat"
+                    className="bg-gray-50 rounded-lg w-full text-black"
+                />
+                <Input
+                    required
+                    defaultValue={foundLocation?.locationLatLng[1].toString()}
+                    label="Longitud"
+                    name="locationLng"
+                    className="bg-gray-50 rounded-lg w-full text-black"
+                />
+            </div>
+            <SelectManager
+                defaultManager={foundManager?.managerId}
+                managers={dataManagers}
+                locations={dataLocations}
+            />
+            <Button
+                type="submit"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg py-3 transition w-full text-lg"
+            >
+                Actualizar
+            </Button>
         </form>
-    )
+    );
 }
