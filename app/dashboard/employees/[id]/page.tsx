@@ -3,6 +3,7 @@ import { authHeaders } from "@/helpers/authHeaders";
 import { Image } from "@heroui/react";
 import FormUpdateEmployee from "./_components/FormUpdateEmployee";
 import EmployeeDataCard from "./_components/EmployeeDataCard";
+import DeleteEmployee from "./_components/DeleteEmployee";
 
 export default async function EmployeePage({ params }: { params: { id: string } }) {
     const responseEmployee = await fetch(`${process.env.API_URL}/employees/${params.id}`, {

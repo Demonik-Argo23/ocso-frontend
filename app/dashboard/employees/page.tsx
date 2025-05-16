@@ -1,11 +1,12 @@
 import { API_URL } from "@/constants";
-import { Employee } from "@/entities";
+import { Employee, Location } from "@/entities";
 import { authHeaders } from "@/helpers/authHeaders";
-import EmployeeCard from "./_components/EmployeeCard";
-import EmployeePhotoCard from "./_components/EmployeePhotoCard";
+import CreateEmployee from "./[id]/_components/CreateEmployee";
+import FormCreateEmployee from "./[id]/_components/FormCreateEmployee";
+import ListEmployees from "./[id]/_components/ListEmployees";
 
 const EmployeesPage = async () => {
-    const response = await fetch(`${API_URL}/employees`, {
+    const responseEmployees = await fetch(`${API_URL}/employees`, {
         headers: {
             ...await (authHeaders())
         },
@@ -13,28 +14,45 @@ const EmployeesPage = async () => {
             tags: ["dashboard/employees"],
         }
     });
-    const data = await response.json();
-    console.log("API response:", data);
+    const dataEmployees = await responseEmployees.json();
 
-    const employees: Employee[] = Array.isArray(data)
-        ? data
-        : Array.isArray(data?.data)
-            ? data.data
-            : Array.isArray(data?.employees)
-                ? data.employees
+    const employees: Employee[] = Array.isArray(dataEmployees)
+        ? dataEmployees
+        : Array.isArray(dataEmployees?.data)
+            ? dataEmployees.data
+            : Array.isArray(dataEmployees?.employees)
+                ? dataEmployees.employees
+                : [];
+
+    const responseLocations = await fetch(`${API_URL}/locations`, {
+        headers: {
+            ...await (authHeaders())
+        },
+        next: {
+            tags: ["dashboard/employees"],
+        }
+    });
+    const dataLocations = await responseLocations.json();
+
+    const locations: Location[] = Array.isArray(dataLocations)
+        ? dataLocations
+        : Array.isArray(dataLocations?.data)
+            ? dataLocations.data
+            : Array.isArray(dataLocations?.locations)
+                ? dataLocations.locations
                 : [];
 
     return (
-        <div className="flex flex-wrap flex-grow-0 h-[90vh] gap-4 overflow-y-auto p-10">
-            {employees.map((employee: Employee) => {
-                if (employee.employeePhoto !== null){
-                    return (
-                    <EmployeePhotoCard key={employee.employeeId} employee={employee}/>
-                )
-                } else {
-                    return <EmployeeCard key={employee.employeeId} employee={employee}/>
-                }
-            })}
+        <div className="relative w-full h-[90vh] bg-white overflow-y-auto p-10 flex flex-col">
+            <div className="flex-1 overflow-y-auto">
+                <ListEmployees employees={employees} locations={locations} />
+            </div>
+            {/* Botón flotante para crear empleado */}
+            <div className="fixed bottom-8 right-8 z-50">
+                <CreateEmployee>
+                    <FormCreateEmployee />
+                </CreateEmployee>
+            </div>
         </div>
     )
 }
