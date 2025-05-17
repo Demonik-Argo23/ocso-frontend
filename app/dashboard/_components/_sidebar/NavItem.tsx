@@ -1,7 +1,8 @@
 "use client";
-import Link from "next/link";
+import { Link } from "@heroui/react";
 import { usePathname } from "next/navigation";
-import { ReactElement } from "react";
+import React from "react";
+
 
 interface NavItemProps{
     icon: JSX.Element;

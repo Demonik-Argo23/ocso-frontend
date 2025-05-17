@@ -46,3 +46,13 @@ export interface Product {
     countSeal: number;
     provider: Provider;
 }
+
+
+export interface User {
+    userEmail: string;
+    userPassword: string;
+    userRoles: string[];
+    manager: Manager;
+    employee: Employee;
+
+}

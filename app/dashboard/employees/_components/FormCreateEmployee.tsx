@@ -2,7 +2,7 @@
 import { createEmployee } from "@/actions/employees/create";
 import { API_URL } from "@/constants";
 import { Button } from "@heroui/react";
-import { Input } from "@nextui-org/react";
+import { Input } from "@heroui/react";
 import SelectLocations from "./SelectLocation";
 import { useEffect, useState } from "react";
 

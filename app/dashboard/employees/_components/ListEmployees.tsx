@@ -1,7 +1,7 @@
 "use client";
 import { Employee, Location } from "@/entities";
-import EmployeeCard from "../../_components/EmployeeCard";
-import EmployeePhotoCard from "../../_components/EmployeePhotoCard";
+import EmployeeCard from "./EmployeeCard";
+import EmployeePhotoCard from "./EmployeePhotoCard";
 import { useState } from "react";
 import { Select, SelectItem } from "@heroui/react";
 

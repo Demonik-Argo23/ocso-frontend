@@ -1,6 +1,6 @@
 'use client';
 import { useRouter } from "next/navigation";
-import { Select, SelectItem } from "@nextui-org/react";
+import { Select, SelectItem } from "@heroui/react";
 import { Location } from "@/entities";
 export default function SelectLocation({
     locations, 
@@ -28,7 +28,7 @@ export default function SelectLocation({
         >
             {locations.map((location) => {
                 return (
-                    <SelectItem key={location.locationId} value={location.locationId}>
+                    <SelectItem key={location.locationId}>
                         {location.locationName}
                     </SelectItem>
                 );

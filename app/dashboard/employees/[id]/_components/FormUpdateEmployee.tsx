@@ -1,8 +1,9 @@
 import updateEmployee from "@/actions/employees/update";
 import { Employee } from "@/entities";
 import { Button } from "@heroui/react";
-import { Input } from "@nextui-org/react";
-import SelectLocations from "./SelectLocation";
+import { Input } from "@heroui/react";
+import { redirect } from "next/navigation";
+import SelectLocations from "../../_components/SelectLocation";
 import { authHeaders } from "@/helpers/authHeaders";
 import { API_URL } from "@/constants";
 

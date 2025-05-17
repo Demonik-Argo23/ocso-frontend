@@ -4,6 +4,7 @@ import { Location } from "@/entities";
 import { authHeaders } from "@/helpers/authHeaders";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
+
 export default async function createLocation(formData: FormData) {
     let location: any = {};
     let locationLatLng = [0, 0];

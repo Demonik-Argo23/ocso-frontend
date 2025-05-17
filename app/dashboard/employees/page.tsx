@@ -1,9 +1,9 @@
 import { API_URL } from "@/constants";
 import { Employee, Location } from "@/entities";
 import { authHeaders } from "@/helpers/authHeaders";
-import CreateEmployee from "./[id]/_components/CreateEmployee";
-import FormCreateEmployee from "./[id]/_components/FormCreateEmployee";
-import ListEmployees from "./[id]/_components/ListEmployees";
+import ListEmployees from "./_components/ListEmployees";
+import FormCreateEmployee from "./_components/FormCreateEmployee";
+import CreateEmployee from "./_components/CreateEmployee";
 
 const EmployeesPage = async () => {
     const responseEmployees = await fetch(`${API_URL}/employees`, {
@@ -49,7 +49,7 @@ const EmployeesPage = async () => {
             </div>
             {/* Botón flotante para crear empleado */}
             <div className="fixed bottom-8 right-8 z-50">
-                <CreateEmployee>
+                <CreateEmployee icon={<span>+</span>}>
                     <FormCreateEmployee />
                 </CreateEmployee>
             </div>
