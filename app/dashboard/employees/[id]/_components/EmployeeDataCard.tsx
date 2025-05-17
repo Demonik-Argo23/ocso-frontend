@@ -31,10 +31,11 @@ export default function EmployeeDataCard({ employee }: { employee: Employee }) {
             <div className="h-full py-20 w-1 bg-zinc-300 mx-6" />
             {<CreateUser icon={<LuUser size={20}/>} photo={employee.employeePhoto}>
                 {
-                    employee && (
+                    !employee.user && (
                         <FormCreateUserEmployee employee={employee}/>
                     )
                 }
+                
             </CreateUser>}
         </div>
     )
