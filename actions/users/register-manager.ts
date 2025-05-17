@@ -1,14 +1,14 @@
 "use server";
-import { authHeaders } from "@/helpers/authHeaders";
-import { API_URL } from "@/constants";
+import { authHeaders } from "../../helpers/authHeaders";
+import { API_URL } from "../../constants";
 
-export default async function registerEmployee(employeeId: string, formData: FormData) {
+export default async function registerManager(managerId: string, formData: FormData) {
     let data: any = {};
     data.userEmail = formData.get("userEmail");
     data.userPassword = formData.get("userPassword");
-    data.userRoles = "Employee";
+    data.userRoles = "Manager";
 
-    const response = await fetch(`${API_URL}/auth/register/${employeeId}?role=employee`, {
+    const response = await fetch(`${API_URL}/auth/register/${managerId}?role=manager`, {
         method: "POST",
         headers: {
             ...await authHeaders(),

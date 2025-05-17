@@ -3,6 +3,7 @@ import { Image, Link } from "@heroui/react";
 import DeleteEmployee from "./DeleteEmployee";
 import CreateUser from "./CreateUser";
 import { LuUser } from "react-icons/lu";
+import FormUpdateUser from "./FormUpdateUser";
 import FormCreateUserEmployee from "./FormCreateUser";
 
 export default function EmployeeDataCard({ employee }: { employee: Employee }) {
@@ -29,14 +30,17 @@ export default function EmployeeDataCard({ employee }: { employee: Employee }) {
 
             </div>
             <div className="h-full py-20 w-1 bg-zinc-300 mx-6" />
-            {<CreateUser icon={<LuUser size={20}/>} photo={employee.employeePhoto}>
+
+            <CreateUser icon={<LuUser size={20} />} photo={employee.employeePhoto}>
                 {
-                    !employee.user && (
-                        <FormCreateUserEmployee employee={employee}/>
+                    !employee.user ? (
+                        <FormCreateUserEmployee employee={employee} />
+                    ) : (
+                        <FormUpdateUser user={employee.user} />
                     )
-                }
-                
-            </CreateUser>}
+            }
+
+            </CreateUser>
         </div>
     )
 }

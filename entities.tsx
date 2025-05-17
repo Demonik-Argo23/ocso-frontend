@@ -1,13 +1,3 @@
-export interface Location{    
-    locationId: number;
-    locationName: string;
-    locationAddress: string;
-    locationLatLng: number[];
-    manager?: Manager;
-    region?: any;
-    employees?: Employee[];
-}
-
 export interface Employee{
 
     employeeId: string;
@@ -31,6 +21,16 @@ export interface Manager{
     manager: string;
 }
 
+export interface Location{    
+    locationId: number;
+    locationName: string;
+    locationAddress: string;
+    locationLatLng: number[];
+    manager?: Manager;
+    region?: any;
+    employees?: Employee[];
+}
+
 export interface Provider{
     providerId: string;
     providerName: string;
@@ -49,6 +49,7 @@ export interface Product {
 
 
 export interface User {
+    userId: string;
     userEmail: string;
     userPassword: string;
     userRoles: string[];

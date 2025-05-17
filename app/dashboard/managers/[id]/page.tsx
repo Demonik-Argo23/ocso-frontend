@@ -1,7 +1,6 @@
 import { API_URL } from "@/constants";
 import { Manager } from "@/entities";
 import { authHeaders } from "@/helpers/authHeaders";
-import { Card, CardBody, CardHeader, Divider } from "@heroui/react";
 import ManagerCard from "./_components/ManagerCard";
 import DeleteManagerButton from "./_components/DeleteManagerButton";
 import FormUpdateManager from "../_components/FormUpdateManager";
